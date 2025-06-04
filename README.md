@@ -267,7 +267,7 @@ singularity run \
 
 **Log** messages can be saved by redirecting **STDERR** to a file.
 
-#### Experimetal settings 
+#### Experimental settings 
 EXCAVATOR2 can be used in experimental settings like **cancer genomic studies** in order to identify **somatic CNVs/CNAs** from pairs of tumor and matched normal samples. In this case, “paired” mode has to be set (-e option) and in *samples-file-list.yaml* test samples must be marked with a TX label (where X is an integer number) while control samples must be marked with CY (where Y is an integer number), whith X=Y. The analysis will be performed by comparing each test sample with its matched control sample.
 
 In many applications, such as **germline CNV** detection or **population studies**, the control sample cannot be a proper matched sample. In this case, use “pooled” mode, so that each test sample will be compared with the same global control sample that results from pooling all samples labeled as controls by summing the WMRC region-by-region. 
