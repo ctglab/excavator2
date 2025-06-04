@@ -1,0 +1,14 @@
+# Reference genome
+Reference:
+  Assembly: hg38 # assembly name
+  FASTA: .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta # path to reference genome FASTA file
+  BigWig: .test/ref/k100.Bismap.MultiTrackMappability.bw # path to reference genome BigWig file
+  Chromosomes: .test/ref/ChromosomeCoordinate_hg38.txt # path to reference genome chromosome coordinates file
+  Centromeres: .test/ref/CentromerePosition_hg38.txt # path to reference genome centromere positions file
+  Gaps: .test/ref/GapHg38.UCSC.txt # path to reference genome gap positions file
+
+# Target regions
+Target:
+  Name: SureSelectV7 # target name
+  BED: .test/data/SureSelect_Human_All_Exon_V7.hg38.bed # path to target BED file
+  Window: 30000 # sliding window size (bp)
