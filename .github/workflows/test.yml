@@ -1,0 +1,43 @@
+name: testing
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: 
+      image: danilotat/excavator2:latest
+      options: --user root
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: devel
+      - name: Download ref 
+        run: |
+          curl -L https://hgdownload.soe.ucsc.edu/gbdb/hg38/hoffmanMappability/k100.Bismap.MultiTrackMappability.bw \
+          --output .test/ref/k100.Bismap.MultiTrackMappability.bw 
+          curl -L ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh38/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz --output .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
+          gzip -d .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
+      - name: Run tests
+        shell: bash -l {0}
+        run: |
+          eval "$(micromamba shell hook --shell bash)"
+          micromamba activate excavator2
+          export PATH="/opt/excavator2:${PATH}"
+          TargetPerla.pl \
+            -v -f -s .test/config.yaml \
+            -o .test/output 
+          EXCAVATORDataPrepare.pl \
+            -v -f \
+            -s .test/sample_sheet.yaml \
+            -t .test/output/hg38/SureSelectV7/w_30000 \
+            -o .test/outputPrepare \
+            -@ 3
+          EXCAVATORDataAnalysis.pl \
+            -v -f \
+            -s .test/sample_file_list.yaml \
+            -i .test/outputPrepare \
+            -t .test/output/hg38/SureSelectV7/w_30000 \
+            -o .test/outputAnalysis \
+            -@ 3 -e paired
