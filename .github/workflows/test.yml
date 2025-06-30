@@ -22,16 +22,16 @@ jobs:
       - name: Run tests
         shell: bash -l {0}
         run: |
-          TargetPerla.pl \
+          ./TargetPerla.pl \
             -v -f -s .test/config.yaml \
             -o .test/output 
-          EXCAVATORDataPrepare.pl \
+          ./EXCAVATORDataPrepare.pl \
             -v -f \
             -s .test/sample_sheet.yaml \
             -t .test/output/hg38/SureSelectV7/w_30000 \
             -o .test/outputPrepare \
             -@ 3
-          EXCAVATORDataAnalysis.pl \
+          ./EXCAVATORDataAnalysis.pl \
             -v -f \
             -s .test/sample_file_list.yaml \
             -i .test/outputPrepare \
