@@ -22,9 +22,6 @@ jobs:
       - name: Run tests
         shell: bash -l {0}
         run: |
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate excavator2
-          export PATH="/opt/excavator2:${PATH}"
           TargetPerla.pl \
             -v -f -s .test/config.yaml \
             -o .test/output 
