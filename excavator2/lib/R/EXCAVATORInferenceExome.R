@@ -228,7 +228,7 @@ for (zz in 1:length(ExpTest)) {
       }
       
       TotalPredBreak2 <- JointSegIn(DataSeq2, muk, mi, smu, sepsilon, Pos2, omega, eta, stepeta)
-      if (length(which(is.na(TotalPredBreak1))) == 0) {
+      if (length(which(is.na(TotalPredBreak2))) == 0) {
         TotalPredBreak2 <- FilterSeg(TotalPredBreak2, FW)
         DataSeg2 <- SegResults(DataSeq2, TotalPredBreak2)
         ChrSeg <- rbind(
