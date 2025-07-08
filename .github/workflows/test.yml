@@ -7,11 +7,29 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: ctglabcnr/excavator2:latest
+    defaults:
+      run:
+        shell: micromamba run -n excavator2 bash {0}
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Cache reference files
+        id: cache-ref
+        uses: actions/cache@v4
         with:
-          ref: devel
+          path: .test/ref
+          key: ${{ runner.os }}-ref-files-${{ hashFiles('.github/workflows/testing.yml') }}
+      - name: Download reference files
+        if: steps.cache-ref.outputs.cache-hit != 'true'
+        run: |
+          echo "Cache not found, downloading reference files..."
+          curl -L https://hgdownload.soe.ucsc.edu/gbdb/hg38/hoffmanMappability/k100.Bismap.MultiTrackMappability.bw \
+            --create-dirs --output .test/ref/k100.Bismap.MultiTrackMappability.bw
+          
+          curl -L http://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh38/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz \
+            --create-dirs --output .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
+          
+          gzip -d .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
       - name: Download ref 
         run: |
           curl -L https://hgdownload.soe.ucsc.edu/gbdb/hg38/hoffmanMappability/k100.Bismap.MultiTrackMappability.bw \
