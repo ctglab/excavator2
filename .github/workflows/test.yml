@@ -6,8 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: danilotat/excavator2:latest
-      options: --user root
+      image: ctglabcnr/excavator2:latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -21,16 +20,16 @@ jobs:
           gzip -d .test/ref/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
       - name: Run tests
         run: |
-          ./TargetPerla.pl \
+          TargetPerla.pl \
             -v -f -s .test/config.yaml \
             -o .test/output 
-          ./EXCAVATORDataPrepare.pl \
+          EXCAVATORDataPrepare.pl \
             -v -f \
             -s .test/sample_sheet.yaml \
             -t .test/output/hg38/SureSelectV7/w_30000 \
             -o .test/outputPrepare \
             -@ 3
-          ./EXCAVATORDataAnalysis.pl \
+          EXCAVATORDataAnalysis.pl \
             -v -f \
             -s .test/sample_file_list.yaml \
             -i .test/outputPrepare \
