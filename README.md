@@ -1,4 +1,5 @@
 [![testing](https://github.com/ctglab/excavator2/actions/workflows/test.yml/badge.svg)](https://github.com/ctglab/excavator2/actions/workflows/test.yml)
+![GitHub docker image build](https://github.com/ctglab/excavator2/actions/workflows/docker.yml/badge.svg)
 [![DOI](https://img.shields.io/badge/DOI-10.1093/nar/gkw718-blue.svg)](https://doi.org/10.1093/nar/gkw695)
 # EXCAVATOR2
 > The first **read count based** tool that exploits **all the reads** produced by **WES** experiments to detect **CNVs** with a **genome-wide resolution**.
