@@ -13,6 +13,9 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 COPY excavator2 /opt/excavator2
 WORKDIR /opt/excavator2
 
+RUN R CMD SHLIB /opt/excavator2/lib/F77/F4R.f && \
+    R CMD SHLIB /opt/excavator2/lib/F77/FastJointSLMLibraryI.f 
+
 ENV PATH="/opt/excavator2:${PATH}"
 
 # Set the ENTRYPOINT to your new script
