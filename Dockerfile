@@ -13,8 +13,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 COPY excavator2 /opt/excavator2
 WORKDIR /opt/excavator2
 
-RUN micromamba -n excavator2 R CMD SHLIB /opt/excavator2/lib/F77/F4R.f && \
-    micromamba -n excavator2 R CMD SHLIB /opt/excavator2/lib/F77/FastJointSLMLibraryI.f 
+RUN /opt/micromamba/envs/excavator2/bin/R CMD SHLIB /opt/excavator2/lib/F77/F4R.f && \
+    /opt/micromamba/envs/excavator2/bin/R CMD SHLIB /opt/excavator2/lib/F77/FastJointSLMLibraryI.f 
 
 ENV PATH="/opt/excavator2:${PATH}"
 
