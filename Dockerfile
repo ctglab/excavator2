@@ -6,6 +6,7 @@ COPY excavator2.yml /tmp/excavator2.yml
 RUN micromamba env create -f /tmp/excavator2.yml && \
     micromamba clean --all --yes
 
+
 # COPY your custom entrypoint script and make it executable
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
@@ -13,6 +14,11 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 COPY excavator2 /opt/excavator2
 WORKDIR /opt/excavator2
 
+# compile stuff 
+RUN eval "$(micromamba shell hook --shell bash)" && \
+    micromamba activate excavator2 && R CMD SHLIB \
+    /opt/excavator2/lib/F77/F4R.f && \
+    R CMD SHLIB /opt/excavator2/lib/F77/FastJointSLMLibraryI.f
 ENV PATH="/opt/excavator2:${PATH}"
 
 # Set the ENTRYPOINT to your new script
