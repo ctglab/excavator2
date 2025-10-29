@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 
 parser <- ArgumentParser(prog = "EXCAVATORNormalizationExome.R", description = "Normalizes read count data by sample")
 

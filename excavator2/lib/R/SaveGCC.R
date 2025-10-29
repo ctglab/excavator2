@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 
 parser <- ArgumentParser(prog = "SaveGCC.R", description = "Saves chromosome GCC information to output folder")
 

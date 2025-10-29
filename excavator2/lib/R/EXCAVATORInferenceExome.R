@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 library(yaml)
 
 parser <- ArgumentParser(prog = "EXCAVATORInferenceExome.R", description = "Performs segmentation and calling for CNV analysis.")

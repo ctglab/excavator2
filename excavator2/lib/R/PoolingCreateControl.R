@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 library(yaml)
 
 parser <- ArgumentParser(prog = "PoolingCreateControl.R", description = "Creates controls pool data to be used in subsequent analysis")

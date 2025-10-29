@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 
 parser <- ArgumentParser(prog = "DataPrepareParallel.R", description = "Splits bash jobs for multi-processor data preparation")
 

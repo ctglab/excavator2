@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library(argparse))
+suppressWarnings(library(argparse))
 
 parser <- ArgumentParser(prog = "FilterTarget.R", description = "Filters target regions from input BED file")
 
