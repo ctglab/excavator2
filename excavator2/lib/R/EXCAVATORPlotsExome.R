@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-library(argparse)
+suppressPackageStartupMessages(library(argparse))
 library(yaml)
 
 parser <- ArgumentParser(prog = "EXCAVATORInferenceExome.R", description = "Generates segmentation and calling plots")
